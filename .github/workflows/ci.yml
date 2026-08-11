@@ -9,7 +9,7 @@ on:
 
 jobs:
   hello:
-    runs-on: ubuntu-latest
+    runs-on: nonexistent-latest
     steps:
       - uses: actions/checkout@v4
       - run: echo "Pipeline is alive. Commit was ${{ github.sha }}" 
