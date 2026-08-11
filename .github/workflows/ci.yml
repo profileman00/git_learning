@@ -2,13 +2,14 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main] # This event tracker will trigger if we push directly to main in git
   pull_request:
-    branches: [main]
+    branches: [main] # This event tracker will trigger if we have PR 
+  workflow_dispatch:
 
 jobs:
   hello:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Pipeline is alive. Commit was ${{ github.sha }}"
+      - run: echo "Pipeline is alive. Commit was ${{ github.sha }}" 
