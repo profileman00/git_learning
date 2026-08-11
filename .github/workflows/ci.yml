@@ -8,8 +8,17 @@ on:
   workflow_dispatch:
 
 jobs:
-  hello:
-    runs-on: nonexistent-latest
+  test:
+    runs-on: ubuntu-latest
+    defaults:         # This is line tells the test to apply the following below before any run in this job
+      run:
+        working-directory: app #There it goes to the app directory so we don't need to mention the full path each time below
     steps:
-      - uses: actions/checkout@v4
-      - run: echo "Pipeline is alive. Commit was ${{ github.sha }}" 
+      - uses: actions/checkout@v4  #Clones your repo onto that fresh VM. Without this step there'd be no files at all to test in VM
+      - uses: actions/setup-python@v5  #Installs Python 3.12 on the runner
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+          cache-dependency-path: app/requirements*.txt
+      - run: pip install -r requirements.txt -r requirements-dev.txt #pip will install the what is written in these files
+      - run: pytest    #This is the actual test as everything above is just to setup the environment for this to run
