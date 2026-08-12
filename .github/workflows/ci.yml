@@ -22,3 +22,16 @@ jobs:
           cache-dependency-path: app/requirements*.txt
       - run: pip install -r requirements.txt -r requirements-dev.txt #pip will install the what is written in these files
       - run: pytest    #This is the actual test as everything above is just to setup the environment for this to run
+
+  lint:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-dev.txt
+      - run: ruff check .
