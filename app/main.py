@@ -2,6 +2,8 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
+test_var = 2
+test_var_2 = "this is to see if lint will catch"
 
 @app.route("/")
 def hello():
