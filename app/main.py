@@ -16,8 +16,6 @@ def health():
 
 
 def add(a, b):
-    test_var = 2
-    test_var_2 = "this is to see if lint will catch"
     """A trivial function so we have something obvious to unit test."""
     return a + b
 
