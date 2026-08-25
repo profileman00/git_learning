@@ -77,7 +77,7 @@ jobs:
         env:
           DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
       - name: Smoke test
-        run: curl -f https://your-staging-url/health || exit 1
+        run: curl -f https://localhost/health || exit 1
 
   deploy-production:
     needs: deploy-staging
